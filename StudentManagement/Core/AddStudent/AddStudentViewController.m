@@ -9,10 +9,13 @@
 #import "NotificationNames.h"
 #import "PopupUtil.h"
 
-@interface AddStudentViewController ()
+@interface AddStudentViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ageTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+@property (weak, nonatomic) IBOutlet UITextField *genderTextField;
+@property (strong, nonatomic) NSArray *genders;
+@property (strong, nonatomic) UIPickerView *genderPicker;
 
 @end
 
@@ -21,7 +24,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupUI];
+}
+
+- (void)setupUI {
     self.ageTextField.keyboardType = UIKeyboardTypeNumberPad;
+    // Array containing gender options
+    self.genders = @[@"--", @"Nam", @"Nữ", @"Khác"];
+    // Initialize UIPickerView and set its data source and delegate
+    self.genderPicker = [[UIPickerView alloc] init];
+    self.genderPicker.dataSource = self;
+    self.genderPicker.delegate = self;
+    
+    // Assign picker view to the textField as inputView
+    self.genderTextField.inputView = self.genderPicker;
+    
+    self.genderTextField.tintColor = [UIColor clearColor];
 }
 
 - (BOOL)validateInput {
@@ -36,6 +54,12 @@
     NSInteger age = [ageString integerValue];
     if (ageString.length == 0 || age < 0 || age > 120) {
         [self showAlertWithTitle:@"Lỗi" message:@"Tuổi phải là một số hợp lệ (0-120)."];
+        return NO;
+    }
+    
+    // Check genderTextField
+    if (self.genderTextField.text.length == 0) {
+        [self showAlertWithTitle:@"Lỗi" message:@"Giới tính không được để trống."];
         return NO;
     }
     
@@ -61,7 +85,8 @@
     if ([self validateInput]) {
         Student *newStudent = [[Student alloc] initWithName:self.nameTextField.text
                                                         age:[self.ageTextField.text integerValue]
-                                                    address:self.addressTextField.text];
+                                                    address:self.addressTextField.text
+                                                     gender:self.genderTextField.text];
         [[DatabaseManager sharedInstance] addStudent:newStudent];
         
         [PopupUtil showAlertWithTitle:@"Thành công"
@@ -73,6 +98,26 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:Notification(ReloadStudentData) object:nil];
     }
+}
+
+// MARK: - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.genders.count;
+}
+
+// MARK: - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.genders[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.genderTextField.text = row == 0 ? @"" : self.genders[row];
 }
 
 @end

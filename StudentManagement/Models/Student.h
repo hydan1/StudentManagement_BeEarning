@@ -15,15 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) NSInteger age;
 @property (nonatomic, copy) NSString *address;
+@property (nonatomic, strong) NSString *gender;
 
 - (instancetype)initWithID:(NSInteger)studentID
                       name:(NSString *)name
                        age:(NSInteger)age
-                   address:(NSString *)address;
+                   address:(NSString *)address
+                    gender:(NSString *)gender;;
 
 - (instancetype)initWithName:(NSString *)name
                          age:(NSInteger)age
-                     address:(NSString *)address;
+                     address:(NSString *)address
+                      gender:(NSString *)gender;;
 
 @end
 

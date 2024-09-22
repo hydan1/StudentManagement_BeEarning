@@ -17,9 +17,6 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    [[DatabaseManager sharedInstance] createDatabase];
-    [[DatabaseManager sharedInstance] createStudentsTable];
-    
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"StudentManagement" bundle:nil];
