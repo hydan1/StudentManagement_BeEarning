@@ -8,8 +8,9 @@
 #import "SceneDelegate.h"
 #import "DatabaseManager.h"
 #import "ListStudentViewController.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
-@interface SceneDelegate ()
+@interface SceneDelegate () <WCSessionDelegate>
 
 @end
 
@@ -17,6 +18,7 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+    // Set root viewcontroller
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"StudentManagement" bundle:nil];
@@ -24,6 +26,13 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listStudentViewController];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    
+    // WCSession check
+    if ([WCSession isSupported]) {
+          WCSession *session = [WCSession defaultSession];
+          session.delegate = self;
+          [session activateSession];
+      }
 }
 
 

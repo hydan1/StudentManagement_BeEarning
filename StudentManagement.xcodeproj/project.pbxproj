@@ -21,8 +21,40 @@
 		041AF0EE2C9D372D008665C2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 041AF0ED2C9D372D008665C2 /* libsqlite3.tbd */; };
 		041AF0F52C9D38CF008665C2 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 041AF0F42C9D38CF008665C2 /* DatabaseManager.m */; };
 		041AF1012C9D3FA8008665C2 /* ListStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041AF0FE2C9D3FA8008665C2 /* ListStudentViewController.m */; };
+		046DFC9A2C9FFD580025DEA9 /* StudentManagementOnWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DFC992C9FFD580025DEA9 /* StudentManagementOnWatchApp.swift */; };
+		046DFC9C2C9FFD580025DEA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DFC9B2C9FFD580025DEA9 /* ContentView.swift */; };
+		046DFC9E2C9FFD590025DEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046DFC9D2C9FFD590025DEA9 /* Assets.xcassets */; };
+		046DFCA12C9FFD590025DEA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046DFCA02C9FFD590025DEA9 /* Preview Assets.xcassets */; };
+		046DFCA42C9FFD590025DEA9 /* StudentManagementOnWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 046DFC972C9FFD580025DEA9 /* StudentManagementOnWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		046DFCAA2C9FFDB70025DEA9 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DFCA92C9FFDB70025DEA9 /* Student.swift */; };
+		046DFCB12C9FFE210025DEA9 /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DFCB02C9FFE210025DEA9 /* ConnectivityManager.swift */; };
 		04BF2FBF2C9D5FDD007B3376 /* StudentManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BF2FBE2C9D5FDD007B3376 /* StudentManagement.storyboard */; };
+		04C7EA4D2C9FFB6C005412F2 /* WatchDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C7EA4C2C9FFB6C005412F2 /* WatchDataManager.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		046DFCA22C9FFD590025DEA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 041AF0C82C9D363E008665C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 046DFC962C9FFD580025DEA9;
+			remoteInfo = "StudentManagementOnWatch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		046DFCA52C9FFD590025DEA9 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				046DFCA42C9FFD590025DEA9 /* StudentManagementOnWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0418413A2C9D67720018C840 /* TableViewBackground.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewBackground.xib; sourceTree = "<group>"; };
@@ -51,7 +83,18 @@
 		041AF0F42C9D38CF008665C2 /* DatabaseManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 		041AF0FD2C9D3FA8008665C2 /* ListStudentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListStudentViewController.h; sourceTree = "<group>"; };
 		041AF0FE2C9D3FA8008665C2 /* ListStudentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListStudentViewController.m; sourceTree = "<group>"; };
+		046DFC972C9FFD580025DEA9 /* StudentManagementOnWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StudentManagementOnWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		046DFC992C9FFD580025DEA9 /* StudentManagementOnWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentManagementOnWatchApp.swift; sourceTree = "<group>"; };
+		046DFC9B2C9FFD580025DEA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		046DFC9D2C9FFD590025DEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		046DFCA02C9FFD590025DEA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		046DFCA92C9FFDB70025DEA9 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		046DFCAB2C9FFDD70025DEA9 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.5.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
+		046DFCB02C9FFE210025DEA9 /* ConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
 		04BF2FBE2C9D5FDD007B3376 /* StudentManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentManagement.storyboard; sourceTree = "<group>"; };
+		04C7EA4B2C9FFB6C005412F2 /* WatchDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchDataManager.h; sourceTree = "<group>"; };
+		04C7EA4C2C9FFB6C005412F2 /* WatchDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchDataManager.m; sourceTree = "<group>"; };
+		04C7EA4E2C9FFC3E005412F2 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +103,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				041AF0EE2C9D372D008665C2 /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		046DFC942C9FFD580025DEA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				041AF0D22C9D363E008665C2 /* StudentManagement */,
+				046DFC982C9FFD580025DEA9 /* StudentManagementOnWatch Watch App */,
 				041AF0D12C9D363E008665C2 /* Products */,
 				041AF0EC2C9D372D008665C2 /* Frameworks */,
 			);
@@ -136,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				041AF0D02C9D363E008665C2 /* StudentManagement.app */,
+				046DFC972C9FFD580025DEA9 /* StudentManagementOnWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +208,8 @@
 		041AF0EC2C9D372D008665C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04C7EA4E2C9FFC3E005412F2 /* WatchConnectivity.framework */,
+				046DFCAB2C9FFDD70025DEA9 /* WatchConnectivity.framework */,
 				041AF0ED2C9D372D008665C2 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
@@ -166,6 +220,8 @@
 			children = (
 				041AF0F32C9D38CF008665C2 /* DatabaseManager.h */,
 				041AF0F42C9D38CF008665C2 /* DatabaseManager.m */,
+				04C7EA4B2C9FFB6C005412F2 /* WatchDataManager.h */,
+				04C7EA4C2C9FFB6C005412F2 /* WatchDataManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -203,6 +259,27 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		046DFC982C9FFD580025DEA9 /* StudentManagementOnWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				046DFC992C9FFD580025DEA9 /* StudentManagementOnWatchApp.swift */,
+				046DFC9B2C9FFD580025DEA9 /* ContentView.swift */,
+				046DFC9D2C9FFD590025DEA9 /* Assets.xcassets */,
+				046DFC9F2C9FFD590025DEA9 /* Preview Content */,
+				046DFCA92C9FFDB70025DEA9 /* Student.swift */,
+				046DFCB02C9FFE210025DEA9 /* ConnectivityManager.swift */,
+			);
+			path = "StudentManagementOnWatch Watch App";
+			sourceTree = "<group>";
+		};
+		046DFC9F2C9FFD590025DEA9 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				046DFCA02C9FFD590025DEA9 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,14 +290,33 @@
 				041AF0CC2C9D363E008665C2 /* Sources */,
 				041AF0CD2C9D363E008665C2 /* Frameworks */,
 				041AF0CE2C9D363E008665C2 /* Resources */,
+				046DFCA52C9FFD590025DEA9 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				046DFCA32C9FFD590025DEA9 /* PBXTargetDependency */,
+			);
+			name = StudentManagement;
+			productName = StudentManagement;
+			productReference = 041AF0D02C9D363E008665C2 /* StudentManagement.app */;
+			productType = "com.apple.product-type.application";
+		};
+		046DFC962C9FFD580025DEA9 /* StudentManagementOnWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 046DFCA82C9FFD590025DEA9 /* Build configuration list for PBXNativeTarget "StudentManagementOnWatch Watch App" */;
+			buildPhases = (
+				046DFC932C9FFD580025DEA9 /* Sources */,
+				046DFC942C9FFD580025DEA9 /* Frameworks */,
+				046DFC952C9FFD580025DEA9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = StudentManagement;
-			productName = StudentManagement;
-			productReference = 041AF0D02C9D363E008665C2 /* StudentManagement.app */;
+			name = "StudentManagementOnWatch Watch App";
+			productName = "StudentManagementOnWatch Watch App";
+			productReference = 046DFC972C9FFD580025DEA9 /* StudentManagementOnWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -230,9 +326,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					041AF0CF2C9D363E008665C2 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					046DFC962C9FFD580025DEA9 = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
@@ -251,6 +351,7 @@
 			projectRoot = "";
 			targets = (
 				041AF0CF2C9D363E008665C2 /* StudentManagement */,
+				046DFC962C9FFD580025DEA9 /* StudentManagementOnWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +368,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		046DFC952C9FFD580025DEA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				046DFCA12C9FFD590025DEA9 /* Preview Assets.xcassets in Resources */,
+				046DFC9E2C9FFD590025DEA9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -280,6 +390,7 @@
 				0418414D2C9D8A310018C840 /* Student.m in Sources */,
 				041AF0E62C9D3640008665C2 /* main.m in Sources */,
 				041841532C9DA4AE0018C840 /* StudentDetailViewController.m in Sources */,
+				04C7EA4D2C9FFB6C005412F2 /* WatchDataManager.m in Sources */,
 				041AF0F52C9D38CF008665C2 /* DatabaseManager.m in Sources */,
 				041841502C9DA2100018C840 /* PopupUtil.m in Sources */,
 				041841452C9D77760018C840 /* AddStudentViewController.m in Sources */,
@@ -287,7 +398,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		046DFC932C9FFD580025DEA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				046DFC9C2C9FFD580025DEA9 /* ContentView.swift in Sources */,
+				046DFCAA2C9FFDB70025DEA9 /* Student.swift in Sources */,
+				046DFCB12C9FFE210025DEA9 /* ConnectivityManager.swift in Sources */,
+				046DFC9A2C9FFD580025DEA9 /* StudentManagementOnWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		046DFCA32C9FFD590025DEA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 046DFC962C9FFD580025DEA9 /* StudentManagementOnWatch Watch App */;
+			targetProxy = 046DFCA22C9FFD590025DEA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		041AF0E12C9D3640008665C2 /* LaunchScreen.storyboard */ = {
@@ -420,6 +550,7 @@
 		041AF0EA2C9D3640008665C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +577,7 @@
 		041AF0EB2C9D3640008665C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -469,6 +601,69 @@
 			};
 			name = Release;
 		};
+		046DFCA62C9FFD590025DEA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StudentManagementOnWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = X65N2789DJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = StudentManagementOnWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = hydan.StudentManagement;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = hydan.StudentManagement.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		046DFCA72C9FFD590025DEA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"StudentManagementOnWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = X65N2789DJ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = StudentManagementOnWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = hydan.StudentManagement;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = hydan.StudentManagement.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -486,6 +681,15 @@
 			buildConfigurations = (
 				041AF0EA2C9D3640008665C2 /* Debug */,
 				041AF0EB2C9D3640008665C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		046DFCA82C9FFD590025DEA9 /* Build configuration list for PBXNativeTarget "StudentManagementOnWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				046DFCA62C9FFD590025DEA9 /* Debug */,
+				046DFCA72C9FFD590025DEA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

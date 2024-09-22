@@ -10,6 +10,7 @@
 #import "Student.h"
 #import "StudentDetailViewController.h"
 #import "PopupUtil.h"
+#import "WatchDataManager.h"
 
 @interface ListStudentViewController ()
 
@@ -59,6 +60,7 @@
 
 - (void)reloadStudentData {
     [self fetchStudentsFromLocalDB];
+    [[WatchDataManager sharedInstance] sendStudentsToWatch];
 }
 
 - (void)setupAddStudentButton {

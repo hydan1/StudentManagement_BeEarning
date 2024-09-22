@@ -8,6 +8,7 @@
 #import "DatabaseManager.h"
 #import "Student.h"
 #import <sqlite3.h>
+#import "WatchDataManager.h"
 
 @interface DatabaseManager () {
     // SQLite database reference
@@ -89,6 +90,7 @@
             // Execute the SQL statement and check if it was successful
             if (sqlite3_step(statement) == SQLITE_DONE) {
                 NSLog(@"Student added successfully");
+                [[WatchDataManager sharedInstance]  sendStudentsToWatch];
             } else {
                 NSLog(@"Error adding student: %s", sqlite3_errmsg(db));
             }
@@ -158,6 +160,7 @@
     // Execute the SQL statement
     if (sqlite3_exec(db, deleteSQL, NULL, NULL, &errMsg) == SQLITE_OK) {
         NSLog(@"All students removed successfully.");
+        [[WatchDataManager sharedInstance]  sendStudentsToWatch];
         sqlite3_close(db); // Close the database
         return YES;
     } else {
@@ -185,6 +188,7 @@
             // Execute the SQL statement and check if the deletion was successful
             if (sqlite3_step(statement) == SQLITE_DONE) {
                 NSLog(@"Student with ID %ld deleted successfully", (long)studentID);
+                [[WatchDataManager sharedInstance]  sendStudentsToWatch];
             } else {
                 NSLog(@"Error deleting student: %s", sqlite3_errmsg(db));
             }
