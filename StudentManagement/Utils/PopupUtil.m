@@ -12,7 +12,7 @@
 + (void)showAlertWithTitle:(NSString *)title
                    message:(NSString *)message
             viewController:(UIViewController *)viewController
-                   completion:(void (^)(void))completion {
+                   completion:(void (^_Nullable)(void))completion {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];

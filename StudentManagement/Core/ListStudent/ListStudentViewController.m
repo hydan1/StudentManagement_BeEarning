@@ -9,6 +9,7 @@
 #import "NotificationNames.h"
 #import "Student.h"
 #import "StudentDetailViewController.h"
+#import "PopupUtil.h"
 
 @interface ListStudentViewController ()
 
@@ -25,6 +26,7 @@
     [self fetchStudentsFromLocalDB];
     [self setupTableView];
     [self setupAddStudentButton];
+    [self setupLeftBarButtons];
     [self ListenReloadData];
 }
 
@@ -67,17 +69,60 @@
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
+- (void)setupLeftBarButtons {
+    UIBarButtonItem *exportButton = [[UIBarButtonItem alloc] initWithTitle:@"Export"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(exportData)];
+   
+    UIBarButtonItem *importButton = [[UIBarButtonItem alloc] initWithTitle:@"Import"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(importData)];
+    
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete All"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(deleteAll)];
+    
+    self.navigationItem.leftBarButtonItems = @[importButton, exportButton, deleteButton];
+}
+
 - (void)setupTableView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
-// Function to get database path in Documents folder
-- (NSString *)getDatabasePath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *databasePath = [documentsDirectory stringByAppendingPathComponent:@"students.db"];
-    return databasePath;
+- (void)deleteAll {
+    [[DatabaseManager sharedInstance] removeAllStudents];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notification(ReloadStudentData) object:nil];
+    [PopupUtil showAlertWithTitle:@"Success" message:@"All student data has been deleted." viewController:self completion:nil];
+}
+
+// Function to handle when pressing Export button
+- (void)exportData {
+    DatabaseManager *dbManager = [DatabaseManager sharedInstance];
+    if ([dbManager exportStudentsToJSON]) {
+        // Show success message
+        [PopupUtil showAlertWithTitle:@"Success" message:@"Data exported successfully." viewController:self completion:nil];
+        
+    } else {
+        // Show error message
+        [PopupUtil showAlertWithTitle:@"Error" message:@"Failed to export data." viewController:self completion:nil];
+    }
+}
+
+// Function to handle when clicking Import button
+- (void)importData {
+    DatabaseManager *dbManager = [DatabaseManager sharedInstance];
+    if ([dbManager importStudentsFromJSON]) {
+        // Show success message
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification(ReloadStudentData) object:nil];
+        [PopupUtil showAlertWithTitle:@"Success" message:@"Data imported successfully." viewController:self completion:nil];
+    } else {
+        // Show error message
+        [PopupUtil showAlertWithTitle:@"Error" message:@"Failed to import data." viewController:self completion:nil];
+    }
 }
 
 #pragma mark - UITableView DataSource

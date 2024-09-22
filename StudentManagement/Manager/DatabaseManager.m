@@ -141,6 +141,32 @@
     return students;
 }
 
+- (BOOL)removeAllStudents {
+    // Define the path to the SQLite database
+    NSString *dbPath = [self getDatabasePath];
+
+    // Open the database
+    if (sqlite3_open([dbPath UTF8String], &db) != SQLITE_OK) {
+        NSLog(@"Failed to open database: %s", sqlite3_errmsg(db));
+        return NO;
+    }
+
+    // SQL query to delete all students
+    const char *deleteSQL = "DELETE FROM students";
+    char *errMsg;
+
+    // Execute the SQL statement
+    if (sqlite3_exec(db, deleteSQL, NULL, NULL, &errMsg) == SQLITE_OK) {
+        NSLog(@"All students removed successfully.");
+        sqlite3_close(db); // Close the database
+        return YES;
+    } else {
+        NSLog(@"Error removing students: %s", errMsg);
+        sqlite3_close(db); // Close the database
+        return NO;
+    }
+}
+
 // Removes a student record from the database by student ID
 - (void)removeStudentWithID:(NSInteger)studentID {
     NSString *dbPath = [self getDatabasePath];
@@ -315,6 +341,138 @@
     }
 
     NSLog(@"Column 'address' removed successfully.");
+    return YES;
+}
+
+- (NSString *)getDocumentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths firstObject];
+}
+
+- (BOOL)exportStudentsToJSON {
+    // Define the path to the SQLite database
+    NSString *dbPath = [self getDatabasePath];
+
+    // Check if the database file exists
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dbPath]) {
+        NSLog(@"Database file does not exist at path: %@", dbPath);
+        return NO;
+    }
+
+    // Open the database
+    if (sqlite3_open([dbPath UTF8String], &db) != SQLITE_OK) {
+        NSLog(@"Failed to open database: %s", sqlite3_errmsg(db));
+        return NO;
+    }
+
+    // Path to the JSON file to store the data
+    NSString *jsonFilePath = [[self getDocumentsDirectory] stringByAppendingPathComponent:@"students_export.json"];
+
+    // SQL query to retrieve all data from the students table
+    const char *querySQL = "SELECT id, name, age, gender FROM students";
+    sqlite3_stmt *statement;
+
+    // Prepare the SQL statement
+    if (sqlite3_prepare_v2(db, querySQL, -1, &statement, NULL) != SQLITE_OK) {
+        NSLog(@"Failed to prepare statement: %s", sqlite3_errmsg(db));
+        sqlite3_close(db); // Close the database if preparation fails
+        return NO;
+    }
+
+    NSMutableArray *studentsArray = [NSMutableArray array];
+
+    // Iterate through each record and store it in the array
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        NSMutableDictionary *student = [NSMutableDictionary dictionary];
+        student[@"id"] = @(sqlite3_column_int(statement, 0));
+        student[@"name"] = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 1)];
+        student[@"age"] = @(sqlite3_column_int(statement, 2));
+        student[@"gender"] = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 3)];
+        
+        [studentsArray addObject:student];
+    }
+
+    // Finalize the statement
+    sqlite3_finalize(statement);
+    sqlite3_close(db); // Close the database after finalizing the statement
+
+    // Convert data to JSON
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:studentsArray options:NSJSONWritingPrettyPrinted error:&error];
+
+    if (error) {
+        NSLog(@"Error serializing JSON: %@", error.localizedDescription);
+        return NO;
+    }
+
+    // Write JSON data to file
+    BOOL success = [jsonData writeToFile:jsonFilePath atomically:YES];
+
+    if (success) {
+        NSLog(@"Data exported successfully to %@", jsonFilePath);
+        return YES;
+    } else {
+        NSLog(@"Failed to write JSON file.");
+        return NO;
+    }
+}
+
+- (BOOL)importStudentsFromJSON {
+    // Define the path to the JSON file to import data
+    NSString *jsonFilePath = [[self getDocumentsDirectory] stringByAppendingPathComponent:@"students_export.json"];
+
+    // Check if the JSON file exists
+    if (![[NSFileManager defaultManager] fileExistsAtPath:jsonFilePath]) {
+        NSLog(@"JSON file does not exist at path: %@", jsonFilePath);
+        return NO;
+    }
+
+    // Read data from the JSON file
+    NSData *jsonData = [NSData dataWithContentsOfFile:jsonFilePath];
+    NSError *error;
+
+    // Convert JSON data to an array
+    NSArray *studentsArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+
+    if (error) {
+        NSLog(@"Error reading JSON file: %@", error.localizedDescription);
+        return NO;
+    }
+
+    // Open the database
+    NSString *dbPath = [self getDatabasePath];
+    if (sqlite3_open([dbPath UTF8String], &db) != SQLITE_OK) {
+        NSLog(@"Failed to open database: %s", sqlite3_errmsg(db));
+        return NO;
+    }
+
+    // Prepare SQL statement to insert data into the table
+    NSString *insertSQL = @"INSERT INTO students (name, age, gender) VALUES (?, ?, ?)";
+    sqlite3_stmt *statement;
+
+    // Iterate over each student object in the array
+    for (NSDictionary *student in studentsArray) {
+        // Prepare SQL statement for each student
+        if (sqlite3_prepare_v2(db, [insertSQL UTF8String], -1, &statement, NULL) == SQLITE_OK) {
+            sqlite3_bind_text(statement, 1, [student[@"name"] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_int(statement, 2, [student[@"age"] intValue]);
+            sqlite3_bind_text(statement, 3, [student[@"gender"] UTF8String], -1, SQLITE_TRANSIENT);
+
+            // Execute SQL statement
+            if (sqlite3_step(statement) != SQLITE_DONE) {
+                NSLog(@"Error inserting student: %s", sqlite3_errmsg(db));
+            }
+
+            // Finalize statement after execution
+            sqlite3_finalize(statement);
+        } else {
+            NSLog(@"Failed to prepare statement: %s", sqlite3_errmsg(db));
+        }
+    }
+
+    // Close the database
+    sqlite3_close(db);
+    NSLog(@"Data imported successfully from JSON.");
     return YES;
 }
 

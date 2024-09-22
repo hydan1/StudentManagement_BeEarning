@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)showAlertWithTitle:(NSString *)title
                    message:(NSString *)message
                 viewController:(UIViewController *)viewController
-                   completion:(void (^)(void))completion;
+                   completion:(void (^_Nullable)(void))completion;
 
 @end
 

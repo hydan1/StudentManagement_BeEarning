@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addStudent:(Student *)student;
 - (NSArray<Student *> *)fetchStudents;
 - (void)removeStudentWithID:(NSInteger)studentID;
+- (BOOL)exportStudentsToJSON;
+- (BOOL)importStudentsFromJSON;
+- (BOOL)removeAllStudents;
 
 @end
 
