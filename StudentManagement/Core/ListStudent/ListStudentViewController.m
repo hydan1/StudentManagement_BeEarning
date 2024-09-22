@@ -101,7 +101,7 @@
     
     // Cell configuration
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (Age: %ld)", student.name, (long)student.age];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Address: %@", student.address];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Giới tính: %@", student.gender];
     
     return cell;
 }

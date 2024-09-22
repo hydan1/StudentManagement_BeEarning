@@ -12,7 +12,6 @@
 @interface AddStudentViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ageTextField;
-@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *genderTextField;
 @property (strong, nonatomic) NSArray *genders;
 @property (strong, nonatomic) UIPickerView *genderPicker;
@@ -63,12 +62,6 @@
         return NO;
     }
     
-    // Check addressTextField
-    if (self.addressTextField.text.length == 0) {
-        [self showAlertWithTitle:@"Lỗi" message:@"Địa chỉ không được để trống."];
-        return NO;
-    }
-    
     return YES;
 }
 
@@ -85,7 +78,6 @@
     if ([self validateInput]) {
         Student *newStudent = [[Student alloc] initWithName:self.nameTextField.text
                                                         age:[self.ageTextField.text integerValue]
-                                                    address:self.addressTextField.text
                                                      gender:self.genderTextField.text];
         [[DatabaseManager sharedInstance] addStudent:newStudent];
         

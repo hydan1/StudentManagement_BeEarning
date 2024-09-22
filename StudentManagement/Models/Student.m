@@ -12,14 +12,12 @@
 - (instancetype)initWithID:(NSInteger)studentID
                       name:(NSString *)name
                        age:(NSInteger)age
-                   address:(NSString *)address
-                    gender:(NSString *)gender {
+                    gender:(NSString *)gender{
     self = [super init];
     if (self) {
         _studentID = studentID;
         _name = name;
         _age = age;
-        _address = address;
         _gender = gender;
     }
     return self;
@@ -27,9 +25,8 @@
 
 - (instancetype)initWithName:(NSString *)name
                          age:(NSInteger)age
-                     address:(NSString *)address
-                      gender:(NSString *)gender {
-    return [self initWithID:0 name:name age:age address:address gender:gender];
+                      gender:(NSString *)gender{
+    return [self initWithID:0 name:name age:age gender:gender];
 }
 
 @end

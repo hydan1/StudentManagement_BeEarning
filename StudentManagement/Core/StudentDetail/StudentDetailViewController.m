@@ -12,7 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *genderLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIView *cardView;
 
 
@@ -38,7 +37,6 @@
     self.nameLabel.text = [NSString stringWithFormat:@"Tên: %@", self.student.name];
     self.ageLabel.text = [NSString stringWithFormat:@"Tuổi: %ld", (long)self.student.age];
     self.genderLabel.text = [NSString stringWithFormat:@"Giới tính: %@", self.student.gender];
-    self.addressLabel.text = [NSString stringWithFormat:@"Địa chỉ: %@", self.student.address];
 }
 
 @end
